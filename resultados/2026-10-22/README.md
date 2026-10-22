@@ -19,6 +19,7 @@ Pedido: `¿Qué hace Harness/run-in-cursor/ric.py hook?`, corrido desde `SPECKIT
 | B | Cursor | Sonnet 5.5 medium | sí | **5/5** | `B-cursor-sonnet.md` |
 | C | Cursor | gpt-5.3-codex | sí | **4/5** | `C-cursor-codex.md` |
 | A2 | Claude Code | Sonnet 5.5 | sí (agregado con `apply-initiative.sh`) | **5/5** | `A2-claude-sonnet-con-contrato.md` |
+| D | Codex CLI 0.159.3 | gpt-6-luna medium (su default) | sí | **1/5** | `D-codex-con-contrato.md` |
 
 - **A** responde muy bien y con `archivo:línea`, pero cierra con "si querés el flujo completo, lo leo": ofrece seguir con
   la misma pregunta, sin propuestas nuevas.
@@ -32,11 +33,19 @@ Pedido: `¿Qué hace Harness/run-in-cursor/ric.py hook?`, corrido desde `SPECKIT
   real: si Cursor renombra `input_tokens`, el hook guarda `null` sin avisar. Un detalle: el comando que propone manda un
   payload inventado, así que prueba que el hook escribe, pero no que los nombres coincidan con los que manda Cursor.
 
+- **D** recibió el contrato (arma una sección "Próximos pasos", que no aparece en ningún otro lado de sus instrucciones),
+  pero la llena con lo mismo que A: "si querés, sigo el flujo completo". No trae propuestas nuevas, ni recomendación,
+  ni riesgos. Cumple la forma del contrato, pero no el fondo.
+
 ## Lectura
 
 - **El contrato de iniciativa pesa más que el modelo para que aparezcan propuestas:** con el contrato, Codex también
   propone (C). Esto contradice la inferencia del README ("el modelo pesa tanto como el prompt"): para la *cantidad* de
   iniciativa, el prompt decide.
+- **Pero en Codex CLI el contrato no alcanza (D):** el mismo texto da 4/5 con un modelo GPT dentro de Cursor y 1/5 en
+  Codex con `gpt-6-luna`. Cambian el harness y el modelo a la vez, así que no se puede separar cuál de los dos pesa. Una
+  hipótesis sin probar: en `~/.codex/agents.md` el bloque queda al final, después de unas 300 líneas del orquestador SDD,
+  y el system prompt propio de Codex pide respuestas breves.
 - **El modelo decide la calidad de la propuesta:** Sonnet encontró un bug real; Codex propuso pasos genéricos.
 - **Claude Code sin el contrato propone poco** cuando la pregunta es corta (A). La iniciativa de la sesión larga salía del
   contexto y de las instrucciones, no solo del modelo.
