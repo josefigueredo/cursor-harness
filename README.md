@@ -7,7 +7,7 @@ que traiga propuestas.
 
 | Archivo | Qué es |
 |---|---|
-| `user-rules.txt` | Texto para Cursor → Settings → Rules → User Rules (la única entrada global; va en texto plano, sin frontmatter). Persona, evidencia, contrato de iniciativa y protocolo corto de Engram. |
+| `user-rules.txt` | Texto de la User Rule global de Cursor (texto plano, sin frontmatter): persona, evidencia, contrato de iniciativa y protocolo corto de Engram. En Cursor 2026.10 se crea en **Customize**, no en Settings → Rules. |
 | `pruebas.md` | Dos pruebas: qué reglas carga Cursor, y una A/B (Claude Code / Cursor+Claude / Cursor+GPT) con puntaje de 0 a 5 para saber si la iniciativa la da el prompt o el modelo. |
 | `fix-claude-noise.sh` | Limpieza ya aplicada en Claude Code el 2026-10-22: un solo output style (Gentleman), el bloque de Engram sin duplicar, superpowers acotado y sin atribución en commits ni PR. Hace backup antes de tocar nada. |
 
@@ -23,8 +23,13 @@ que traiga propuestas.
 - Codex tiene Gentleman en `~/.codex/agents.md` y aun así no muestra iniciativa. Inferencia: el modelo pesa tanto
   como el prompt; la A/B de `pruebas.md` es la que lo confirma o lo descarta.
 
+- La User Rule se creó desde Customize el 2026-10-22. El texto no aparece en disco: ni en `state.vscdb`
+  (`aicontext.personalContext` sigue en 0), ni en `~/.cursor`, ni en `~/Library/Application Support/Cursor/User`.
+  Inferencia: se guarda en la cuenta, del lado del servidor. Por eso no se puede instalar escribiendo archivos;
+  se verifica con la prueba 1 de `pruebas.md`.
+
 ## Pendiente
 
-1. Pegar `user-rules.txt` en las User Rules de Cursor.
+1. ~~Pegar `user-rules.txt` en las User Rules de Cursor.~~ Hecho el 2026-10-22, desde Customize.
 2. Cuando se renueve la cuota de Cursor (el 2026-10-22 dio *monthly usage limit*), correr las dos pruebas de `pruebas.md`.
 3. Si las User Rules funcionan, borrar `~/.cursor/rules/gentle-ai.mdc`, que es código muerto.
