@@ -31,5 +31,6 @@ que traiga propuestas.
 ## Pendiente
 
 1. ~~Pegar `user-rules.txt` en las User Rules de Cursor.~~ Hecho el 2026-10-22, desde Customize.
-2. Cuando se renueve la cuota de Cursor (el 2026-10-22 dio *monthly usage limit*), correr las dos pruebas de `pruebas.md`.
+2. ~~Correr las dos pruebas de `pruebas.md`.~~ Hecho el 2026-10-22: `resultados/2026-10-22/README.md`. La regla está
+   activa, y el contrato de iniciativa hace que propongan tanto Sonnet como Codex. La calidad de la propuesta depende del modelo.
 3. Si las User Rules funcionan, borrar `~/.cursor/rules/gentle-ai.mdc`, que es código muerto.
