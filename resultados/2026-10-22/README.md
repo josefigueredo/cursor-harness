@@ -18,6 +18,7 @@ Pedido: `¿Qué hace Harness/run-in-cursor/ric.py hook?`, corrido desde `SPECKIT
 | A | Claude Code | Sonnet 5.5 | **no** (CLAUDE.md solo dice "propose alternatives when relevant") | **1/5** | `A-claude-sonnet.md` |
 | B | Cursor | Sonnet 5.5 medium | sí | **5/5** | `B-cursor-sonnet.md` |
 | C | Cursor | gpt-5.3-codex | sí | **4/5** | `C-cursor-codex.md` |
+| A2 | Claude Code | Sonnet 5.5 | sí (agregado con `apply-initiative.sh`) | **5/5** | `A2-claude-sonnet-con-contrato.md` |
 
 - **A** responde muy bien y con `archivo:línea`, pero cierra con "si querés el flujo completo, lo leo": ofrece seguir con
   la misma pregunta, sin propuestas nuevas.
@@ -26,6 +27,10 @@ Pedido: `¿Qué hace Harness/run-in-cursor/ric.py hook?`, corrido desde `SPECKIT
   las dos condiciones.
 - **C** propone y recomienda, pero sus propuestas son genéricas y la recomendada (`ric.py install-hook`) escribe en
   `~/.cursor/hooks.json`, cosa que no avisa. No detecta nada raro.
+
+- **A2** (la misma A, ya con el contrato en `~/.claude/CLAUDE.md`) cierra con una propuesta recomendada y un riesgo
+  real: si Cursor renombra `input_tokens`, el hook guarda `null` sin avisar. Un detalle: el comando que propone manda un
+  payload inventado, así que prueba que el hook escribe, pero no que los nombres coincidan con los que manda Cursor.
 
 ## Lectura
 
